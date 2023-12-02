@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
-import axios from "axios";
 import { instance } from "./auth/auth.reducer";
 
 const initialState = {

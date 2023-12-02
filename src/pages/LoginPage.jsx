@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Alert, Button, Card, Container, Form } from 'react-bootstrap';
+import React, { useRef } from 'react';
+import { Button, Card, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginThunk } from 'redux/auth/auth.reducer';
@@ -7,8 +7,8 @@ import { loginThunk } from 'redux/auth/auth.reducer';
 const LoginPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState('');
+  // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -27,7 +27,7 @@ const LoginPage = () => {
       <Card style={{ width: '18rem', marginLeft: 'auto', marginRight: 'auto' }}>
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
+          {/* {error && <Alert variant="danger">{error}</Alert>} */}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
@@ -50,7 +50,7 @@ const LoginPage = () => {
               />
             </Form.Group>
 
-            <Button disabled={loading} className="w-100 mt-4" type="submit">
+            <Button /*disabled={loading}*/ className="w-100 mt-4" type="submit">
               Log In
             </Button>
           </Form>

@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete.svg';
-import { deleteContact, fetchContacts } from 'redux/contactsSlice';
-import { useEffect } from 'react';
+import { deleteContact } from 'redux/contactsSlice';
 import { Button, Card, Stack } from 'react-bootstrap';
 
 export const ContactListItem = ({ filteredContacts }) => {
