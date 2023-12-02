@@ -5,7 +5,7 @@ import { addContact } from 'redux/contactsSlice';
 
 export const ContactForm = () => {
   const contacts = useSelector(state => state.contacts.items);
-  const [data, setData] = useState({ name: '', phone: '' });
+  const [data, setData] = useState({ name: '', number: '' });
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -24,7 +24,7 @@ export const ContactForm = () => {
   };
 
   const resetForm = () => {
-    setData({ name: '', phone: '' });
+    setData({ name: '', number: '' });
   };
 
   const handleInputChange = e => {
@@ -51,8 +51,8 @@ export const ContactForm = () => {
             <Form.Control
               required
               type="tel"
-              name="phone"
-              value={data.phone}
+              name="number"
+              value={data.number}
               onChange={handleInputChange}
               pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             />

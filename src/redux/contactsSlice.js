@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import axios from "axios";
+import { instance } from "./auth/auth.reducer";
 
 const initialState = {
   items: [],
@@ -9,28 +10,25 @@ const initialState = {
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue}) => {
     try {
-      const { data } = await axios.get(`https://655c739e25b76d9884fd4966.mockapi.io/contacts`)
+      const { data } = await instance.get('/contacts');
       return data
     } catch (err) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return rejectWithValue(err.message) // err.response.data
+      return rejectWithValue(err.message)
     }
   }
 );
 
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async (data, { rejectWithValue }) => {
+  async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`https://655c739e25b76d9884fd4966.mockapi.io/contacts`, data)
-      return response.data
+      const { data } = await instance.post(`/contacts`, formData)
+      console.log('data: ', data);
+      return data;
     } catch (err) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return rejectWithValue(err.message) // err.response.data
+      return rejectWithValue(err.message)
     }
   }
 );
@@ -39,12 +37,10 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, {rejectWithValue}) => {
     try {
-      const { data } = await axios.delete(`https://655c739e25b76d9884fd4966.mockapi.io/contacts/${contactId}`)
+      const { data } = await instance.delete(`/contacts/${contactId}`)
       return data
     } catch (err) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return rejectWithValue(err.message) // err.response.data
+      return rejectWithValue(err.message)
     }
   }
 )

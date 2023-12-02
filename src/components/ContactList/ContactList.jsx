@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ContactListItem } from './ContactListItem';
 
-export const ContactList = () => {
+export const ContactList = ({ filteredContacts }) => {
   const [contactListHeight, setContactListHeight] = useState(null);
-  console.log('contactListHeight: ', contactListHeight);
 
   useEffect(() => {
     setContactListHeight(window.innerHeight - 214);
@@ -19,7 +18,7 @@ export const ContactList = () => {
         overflowY: 'scroll',
       }}
     >
-      <ContactListItem />
+      <ContactListItem filteredContacts={filteredContacts} />
     </ul>
   );
 };
